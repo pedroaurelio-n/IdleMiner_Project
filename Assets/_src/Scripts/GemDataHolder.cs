@@ -4,9 +4,23 @@ using UnityEngine;
 
 public class GemDataHolder : MonoBehaviour
 {
+    public List<Gem> GemsInScene = new List<Gem>();
     [SerializeField] private List<GemData> gemData;
 
     private float totalWeight;
+
+    public void AddGemToList(Gem gem)
+    {
+        GemsInScene.Add(gem);
+    }
+
+    public void RemoveGemFromList(Gem gem)
+    {
+        if (GemsInScene.Contains(gem))
+            GemsInScene.Remove(gem);
+        else
+            Debug.LogError("Tried to remove unknown gem.");
+    }
 
     public GemData GenerateRandom()
     {
